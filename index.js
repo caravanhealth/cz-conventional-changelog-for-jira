@@ -5,7 +5,7 @@ var conventionalCommitTypes = require('./types');
 var defaults = require('./defaults');
 var configLoader = require('commitizen').configLoader;
 
-var config = configLoader.load();
+var config = configLoader.load() || {};
 
 function getEnvOrConfig(env, configVar, defaultValue) {
   const isEnvSet = Boolean(env);
