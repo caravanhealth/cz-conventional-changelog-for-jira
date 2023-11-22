@@ -88,7 +88,24 @@ const options = {
     process.env.CZ_EXCLAMATION_MARK,
     config.exclamationMark,
     defaults.exclamationMark
-  )
+  ),
+  skipJiraComment: getEnvOrConfig(
+    process.env.CZ_SKIP_JIRA_COMMENT,
+    config.skipJiraComment,
+    defaults.skipJiraComment
+  ),
+  skipJiraTime: getEnvOrConfig(
+    process.env.CZ_SKIP_JIRA_TIME,
+    config.skipJiraTime,
+    defaults.skipJiraTime
+  ),
+  skipJiraTransition: getEnvOrConfig(
+    process.env.CZ_SKIP_JIRA_TRANSITION,
+    config.skipJiraTransition,
+    defaults.skipJiraTransition
+  ),
+  jiraTransistions: process.env.CZ_JIRA_TRANSITIONS || config.jiraTransistions || defaults.jiraTransistions,
+  defaultJiraTransition: process.env.CZ_DEFTAULT_JIRA_TRANSITION || config.defaultJiraTransition || defaults.defaultJiraTransition
 };
 
 (function(options) {

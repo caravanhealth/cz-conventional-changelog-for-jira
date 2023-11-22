@@ -6,7 +6,7 @@ module.exports = {
   skipScope: true,
   skipType: false,
   skipDescription: false,
-  skipBreaking: false,
+  skipBreaking: true,
   customScope: true,
   maxHeaderWidth: 72,
   minHeaderWidth: 10,
@@ -16,5 +16,19 @@ module.exports = {
   jiraLocation: 'pre-description',
   jiraPrepend: '',
   jiraAppend: '',
-  exclamationMark: false
+  exclamationMark: false,
+  skipJiraComment: false,
+  skipJiraTime: false,
+  skipJiraTransition: false,
+  defaultJiraTransition: "in-code-review",
+  jiraTransistions: [
+    "ready",
+    "in-development",
+    "in-code-review",
+    "ready-for-testing",
+    "rework",
+    "ready-for-production",
+    "done",
+    "cancelled"
+  ]
 };

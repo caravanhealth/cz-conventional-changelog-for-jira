@@ -65,6 +65,19 @@ module.exports = function(options) {
     const prepend = options.jiraPrepend || ''
     const append = options.jiraAppend || ''
     return jiraIssue ? `${prepend}${jiraIssue}${append} `: '';
+  };
+
+  const buildJiraCommands = function(jiraTransition, jiraComment, jiraTime) {
+    const commandString = '';
+    if (jiraTransition) {
+      commandString += `#${jiraTransition} `;
+    }
+    if (jiraComment) {
+      commandString += `#comment ${jiraComment} `;
+    }
+    if (jiraTime) {
+      commandString += `#time ${jiraTime} `;
+    }
   }
 
   var types = getFromOptionsOrDefaults('types');
@@ -223,6 +236,44 @@ module.exports = function(options) {
           }
         },
 
+
+        {
+          type: 'confirm',
+          name: 'isJiraTransition',
+          when: !options.skipJiraTransition,
+          message: 'Does this cause an issue workflow tranisition?',
+          default: false
+        },
+        {
+          type: 'list',
+          name: 'jiraTransition',
+          when: function(answers) {
+            return answers.isJiraTransition;
+          },
+          message: "Select the workflow status to tranisition this issue to:",
+          choices: choices,
+          default: options.defaultJiraTransition
+        },
+        {
+          type: 'input',
+          name: 'jiraComment',
+          when: !options.skipJiraComment,
+          message:
+            'Provide a comment to attach to the issue: (press enter to skip)\n',
+          default: ''
+        },
+        // TODO: Make time command validation for w d h m format
+        {
+          type: 'input',
+          name: 'jiraTime',
+          when: !options.skipJiraTime,
+          message:
+            'Provide a time amount to attach to the issue: (press enter to skip)\n',
+          default: ''
+        },
+        
+
+
         {
           type: 'confirm',
           name: 'isIssueAffected',
@@ -293,7 +344,9 @@ module.exports = function(options) {
 
         var issues = answers.issues ? wrap(answers.issues, wrapOptions) : false;
 
-        const fullCommit = filter([head, body, breaking, issues]).join('\n\n');
+        const jiraCommands = buildJiraCommands(answers.jiraTransition, answers.jiraComment, answers.jiraTime);
+
+        const fullCommit = filter([head, body, breaking, issues, jiraCommands]).join('\n\n');
 
         if (testMode) {
           return commit(fullCommit);
