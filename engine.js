@@ -258,7 +258,6 @@ module.exports = function (options) {
           }
         },
 
-
         {
           type: 'confirm',
           name: 'isJiraTransition',
@@ -284,17 +283,19 @@ module.exports = function (options) {
             'Provide a comment to attach to the issue: (press enter to skip)\n',
           default: ''
         },
-        // TODO: Make time command validation for w d h m format
         {
           type: 'input',
           name: 'jiraTime',
           when: !options.skipJiraTime,
           message:
-            'Provide a time amount to attach to the issue: (press enter to skip)\n',
-          default: ''
+            'Provide a time amount to attach to the issue in the format <value>w <value>d <value>h <value>m: (press enter to skip)\n',
+          default: '',
+          validate: function (time) {
+            return (
+              /^([0-9]+w)*[ ]?([0-9]+d)*[ ]?([0-9]+h)*[ ]?([0-9]+m)*$/.test(time)
+            );
+          },
         },
-
-
 
         {
           type: 'confirm',

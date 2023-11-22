@@ -1,6 +1,6 @@
 {
   "name": "@caravanhealth/cz-conventional-changelog-for-jira",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Commitizen adapter following the conventional-changelog format and also asking for JIRA issue.",
   "main": "index.js",
   "scripts": {
