@@ -1,6 +1,6 @@
 {
   "name": "@caravanhealth/cz-conventional-changelog-for-jira",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Commitizen adapter following the conventional-changelog format and also asking for JIRA issue.",
   "main": "index.js",
   "scripts": {
@@ -23,13 +23,15 @@
   "dependencies": {
     "boxen": "^5.1.2",
     "chalk": "^2.4.1",
-    "commitizen": "^4.2.6",
+    "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "inquirer": "^8.2.4",
     "lodash.map": "^4.5.1",
     "longest": "^2.0.1",
     "right-pad": "^1.0.1",
-    "word-wrap": "^1.0.3"
+    "word-wrap": "^1.2.4",
+    "braces": "^3.0.3",
+    "micromatch": "^4.0.6"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
